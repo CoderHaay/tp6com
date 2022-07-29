@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <link href="//unpkg.com/layui@2.7.5/dist/css/layui.css" rel="stylesheet">-->
+    <link href="/static/index/layui/css/layui.css" rel="stylesheet">
+    <script src="/static/index/js/jquery-3.6.0.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <form class="layui-form"  style="margin-top: 50px;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" required lay-verify="required" placeholder="请输入姓名" autocomplete="off"
+                       class="layui-input name">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话</label>
+            <div class="layui-input-block">
+                <input type="number" name="phonenum"  onKeypress="return(/[\d\.]/.test(String.fromCharCode(event.keyCode)))" required lay-verify="required" placeholder="请输入电话" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <div class="layui-btn" id="submit" lay-submit lay-filter="formDemo">立即提交</div>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+         $("#submit").click(
+             function () {
+                 //获取数据
+                 // var name=$(".name").val()
+                 var name=$("input[name='name']").val() // 两种方法获取值
+                 var phonenum=$("input[name='phonenum']").val()
+                 url = "/index/index/user" // 默认访问当前应用下的当前控制器的方法
+                 data = {
+                     'name':name,
+                     'phonenum': phonenum
+                 }
+                 $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: function(result){
+                        if(result.code === 1){
+                            alert("提交成功")
+                        }
+
+                    }
+
+                 });
+             }
+         )
+    </script>
+
+</body>
+</html>
