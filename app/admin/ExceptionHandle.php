@@ -52,16 +52,16 @@ class ExceptionHandle extends Handle
      */
     public function render($request, Throwable $e): Response
     {
-//        return json(['msg' => '1111']);
         // 添加自定义异常处理机制
-        $message = mb_convert_encoding($e->getMessage(), 'UTF-8', 'UTF-8,GBK,GBK2312,BIG5');
         if ($e instanceof BaseException) {
             if (env('APP_DEBUG')) {
                 return network_result($e->msg, $e->httpStatus, $e->errorCode);
             } else {
                 return network_result('系统内部错误', $e->httpStatus, $e->errorCode);
             }
-        }elseif ($e instanceof \Exception) {
+        }
+        $message = mb_convert_encoding($e->getMessage(), 'UTF-8', 'UTF-8,GBK,GBK2312,BIG5');
+        if ($e instanceof \Exception) {
             if (env('APP_DEBUG')) {
                 return network_result($message, $e->getCode());
             } else {

@@ -2,7 +2,7 @@
 
 use think\facade\Route;
 
-Route::get('demo', 'demo/index');
+Route::get('demo', 'dbdemo/index');
 
 //Route::get('account/login', 'account/login');
 

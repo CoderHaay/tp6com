@@ -2,7 +2,7 @@
 
 namespace app\lib\exception;
 
-class ParameterException extends BaseException
+class   ParameterException extends BaseException
 {
     public $httpStatus = 201;
     public $errorCode = 10001;

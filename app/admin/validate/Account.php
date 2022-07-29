@@ -5,6 +5,12 @@ namespace app\admin\validate;
 use think\Validate;
 
 class Account extends Validate{
+    //'weigh'   => 'number|between:1,120',
+    //'tel'=>'mobile',
+    //'heard_img'=>'url',
+    //'enable'=>'integer',
+    //'status'=>'integer',
+    //'target_num'=>'require|integer',number
     protected $rule = [
         'username' => 'require',
         'password' => 'require'
