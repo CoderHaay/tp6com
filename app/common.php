@@ -6,6 +6,11 @@ function success($data = [], $msg = "success")
     return network_result($msg, 200, 10000, $data);
 }
 
+function fail($data = [], $msg = "fail")
+{
+    return network_result($msg, 200, 10000, $data);
+}
+
 /**
  * @description: 其他状态
  * @param {*} $msg
