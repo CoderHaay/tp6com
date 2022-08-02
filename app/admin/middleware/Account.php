@@ -34,9 +34,11 @@ class Account
         $exist = $account_model->check($params['username'], $params['password']);
         if(!$exist){
             throw new NotFoundException();
-        }else{
-            echo 'True';
         }
+//        halt($exist->toArray());
+        $params['id'] = $exist['id'];
+        $params['scope'] = $exist['scope'];
+        $request->params = $params;
         return $next($request);
     }
 }

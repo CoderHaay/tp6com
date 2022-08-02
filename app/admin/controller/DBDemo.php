@@ -5,6 +5,7 @@ namespace app\admin\controller;
 use app\BaseController;
 use think\facade\Db;
 use app\admin\model\User;
+use app\admin\model\Account;
 
 class DBDemo extends BaseController
 {
@@ -47,7 +48,10 @@ class DBDemo extends BaseController
         $res = User::find(4)->toArray();
         dump($res);
 
-        $list = User::select([1,2,3])->toArray();
-        dump($list);
+//        $res = Account::where('username', 'admin', 'password': 123456)->toArray();
+//        dump($res);
+
+//        $list = User::select([1,2,3])->toArray();
+//        dump($list);
     }
 }

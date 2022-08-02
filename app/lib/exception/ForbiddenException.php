@@ -2,7 +2,7 @@
 
 namespace app\lib\exception;
 
-class ForbiddenException extends \Exception
+class ForbiddenException extends BaseException
 {
     public $httpStatus = 403;
     public $errorCode = 10002;
