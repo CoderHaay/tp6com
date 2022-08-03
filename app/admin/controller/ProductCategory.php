@@ -10,6 +10,12 @@ use app\admin\service\ProductCategory as ProductCategoryService;
 
 class ProductCategory extends BaseController
 {
+    public function index($page=1,$size=10){
+        $list = (new ProductCategoryModel())->getPageData($page,$size);
+        return success($list);
+    }
+
+
     public function save(Request $request)
     {
         $data = $request->params;
@@ -50,7 +56,12 @@ class ProductCategory extends BaseController
 
     public function read(Request $request)
     {
-        $data = $request->params;
-        return success($data);
+        $id = $request->params['id'];
+        $res = (new ProductCategoryService())->findByID($id);
+        if ($res){
+            return success($res);
+        }else{
+            return fail();
+        }
     }
 }

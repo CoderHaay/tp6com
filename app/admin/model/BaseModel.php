@@ -23,4 +23,6 @@ class BaseModel extends Model
      *
      */
     protected $updateTime = 'update_time';
+
+    protected $hidden = ['create_time', 'update_time', 'delete_time'];
 }

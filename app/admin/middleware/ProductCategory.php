@@ -15,13 +15,15 @@ class ProductCategory
     {
         $params = $request->param();
         $action = $request->action();
+        if ($action != 'index') {
+            $scene = validate(ProductCategoryValidate::class)->scene($action);
+            $scene->check($params);
 
-        $scene = validate(ProductCategoryValidate::class)->scene($action);
-        $scene->check($params);
+            $params = $scene->getDataByRule($params);
 
-        $params = $scene->getDataByRule($params);
+            $request->params = $params;
+        }
 
-        $request->params = $params;
         return $next($request);
     }
 }

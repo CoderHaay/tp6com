@@ -6,9 +6,14 @@ use think\model\concern\SoftDelete;
 
 class ProductCategory extends BaseModel
 {
-    protected $autoWriteTimestamp = true;
-
     use SoftDelete;
 
     protected $deleteTime = 'delete_time';
+
+    public function getPageData($page, $size)
+    {
+        return self::paginate($size, false, [
+            'page' => $page
+        ]);
+    }
 }
