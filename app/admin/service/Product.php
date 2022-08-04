@@ -23,4 +23,21 @@ class Product
     public function findByID($id){
         return ProductModel::find($id);
     }
+
+    public function edit($data){
+        $model = new ProductModel();
+        // 启动事务
+        // 当闭包中的代码发生异常会自动回滚
+        $model->startTrans();
+        try {
+            //执行具体的操作
+
+
+            // 提交事务
+            $model->commit();
+        }catch (\Exception $e){
+            // 回滚事务
+            $model->rollback();
+        }
+    }
 }

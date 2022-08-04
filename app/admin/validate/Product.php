@@ -38,16 +38,50 @@ class Product extends BaseValidate
         'stock.require' => '商品库存不能为空',
     ];
 
+    protected $specsRule = [
+        'specs_value_id' => 'require',
+        'price' => 'require',
+        'stock' => 'require',
+    ];
+    protected $specsMessage = [
+        'price.require' => '商品规格价格未填写',
+        'stock.require' => '商品库存未填写'
+    ];
+
+    /***
+     * Notes:
+     * User: ${Harry}
+     * DateTime: 2022/8/4 17:05
+     * @param $value
+     * @param string $rule
+     * @param string $data
+     * @param string $field
+     * @return string|void
+     */
     protected function checkSpecs($value, $rule = '', $data = '', $field = '')
     {
         if (isset($value) && !is_array($value)) {
             return $field . "规格类型错误";
         }
+        $validate = new Product();
+        foreach ($value as $item) {
+            if (!is_array($item)) {
+                return $field . '规格数据错误';
+            }
+            $validate->message = $this->specsMessage;
+            $result = $validate->check($item, $this->specsRule);
+            if (!$result) {
+                throw new \Exception($validate->error);
+            }
+        }
+
+        return true;
     }
 
 
     //验证规则，设置后只会校验这个数组里面的参数
-    protected $scene = [
+    protected
+        $scene = [
         'save' => ['cat_id', 'name', 'image', 'price', 'slide_image', 'stock', 'is_hot', 'spec_type', 'specs'],
         'update' => ['id', 'cat_id', 'name', 'image', 'price', 'slide_image', 'stock', 'is_hot', 'spec_type',
             'specs'],

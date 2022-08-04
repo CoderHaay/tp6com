@@ -6,6 +6,7 @@ use app\admin\model\Product as ProductModel;
 use app\admin\service\Product as ProductService;
 use app\BaseController;
 use app\Request;
+use think\Exception;
 
 class Product extends BaseController
 {
@@ -17,6 +18,11 @@ class Product extends BaseController
 
     public function save(Request $request)
     {
+        $check = $request->checkToken('__token__');
+        if(false === $check) {
+            throw new Exception('invalid token');
+        }
+
         $data = $request->params;
         $model = new ProductModel();
         $res = $model->save($data);

@@ -3,14 +3,17 @@
 namespace app\admin\controller;
 
 use app\BaseController;
+use app\Request;
 use think\facade\Db;
 use app\admin\model\User;
 use app\admin\model\Account;
 
 class DBDemo extends BaseController
 {
-    public function index()
+    public function index(Request $request)
     {
+        $token = $request->buildToken('__token__', 'sha1');
+        return success(['token' => $token]);
         // 增
 //        $res = Db::name('user')->insert([
 //            'name' => '王四',
@@ -45,8 +48,8 @@ class DBDemo extends BaseController
 //        $user = User::find(26);
 //        $res =$user->delete();
         //查询
-        $res = User::find(4)->toArray();
-        dump($res);
+//        $res = User::find(4)->toArray();
+//        dump($res);
 
 //        $res = Account::where('username', 'admin', 'password': 123456)->toArray();
 //        dump($res);
