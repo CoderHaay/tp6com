@@ -32,7 +32,6 @@ class Product
         try {
             //执行具体的操作
 
-
             // 提交事务
             $model->commit();
         }catch (\Exception $e){
