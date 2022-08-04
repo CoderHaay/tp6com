@@ -10,7 +10,6 @@ class Account extends BaseController{
     public function login(Request $request){
         $param = $request->params;
         $token = (new AccountService())->getToken($param );
-//        halt($token);
         return success(['token' => $token]);
     }
     public function info(Request $request){

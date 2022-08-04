@@ -2,9 +2,10 @@
 
 namespace app\admin\validate;
 
+use app\validate\BaseValidate;
 use think\Validate;
 
-class Account extends Validate{
+class Account extends BaseValidate{
     //'weigh'   => 'number|between:1,120',
     //'tel'=>'mobile',
     //'heard_img'=>'url',
